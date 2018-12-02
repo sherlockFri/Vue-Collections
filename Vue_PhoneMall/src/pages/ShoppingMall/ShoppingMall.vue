@@ -13,7 +13,7 @@
     </div>
     <!-- swiper area -->
     <div class="swiper-wrap">
-      <swiper :options="swiperOption" v-if="bannerPic.length">
+      <swiper :options="swiperOption1" v-if="bannerPic.length">
         <swiper-slide v-for="img in bannerPic" :key='img.goodsId' >
           <img class="swiper-img swiper-lazy" :data-src="img.image" alt="" >
         </swiper-slide>
@@ -32,33 +32,31 @@
       <img :src="adBanner" width="100%">
     </div>
      <!--Recommend goods area-->
-    <div class="recommend-area">
-      <div class="recommend-title">商品推荐</div>
-      <div class="recommend-body">
-        <swiper :options="swiperOption">
-          <swiper-slide v-for="(item,index) in recommendGoods " :key="index">
-            <div class="recommend-item">
-              <img :src="item.image" width="80%">
-              <div>{{item.goodsName}}</div>
-              <div>￥{{item.price | moneyFilter}}(￥{{item.mallPrice | moneyFilter}})</div>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
-    </div>
+    <recommend-goods :recommendGoods='recommendGoods'></recommend-goods>
+    <floor-component :floorData="floor1" :floorTitle="floorName.floor1"></floor-component>
+    <floor-component :floorData="floor2" :floorTitle="floorName.floor2"></floor-component>
+    <floor-component :floorData="floor3" :floorTitle="floorName.floor3"></floor-component>
+    <!--hot-sale area-->
+    <hot-sale :hotGoods="hotGoods"></hot-sale>
+   
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+
 import axios from 'axios'
+import floorComponent from "../../component/floorComponent";
+import { toMoney } from "@/filter/moneyFilter.js"
+import HotSale from './components/HotSale'
+import RecommendGoods from './components/RecommendGoods'
+import url from "@/serviceAPI.config.js";
 
 export default {
   name: "ShoppingMall",
   data() {
     return {
       locationIcon: require("../../assets/images/location.png"),
-      swiperOption: {
+      swiperOption1: {
         lazy: true,
         pagination: {
           el: '.swiper-pagination',
@@ -72,11 +70,13 @@ export default {
 
         loop: true,
       },
+    
+      
       bannerPic: [],
       category: [],
       adBanner: [],
       recommendGoods: [],
-      recommendGoods: [],
+     
       floor1: [],
       floor2: [],
       floor3: [],
@@ -88,7 +88,7 @@ export default {
 
   created() {
     axios({
-      url: 'https://www.easy-mock.com/mock/5c02242210c9227e21fe7932/phonemall/index',
+      url: url.getShopingMallInfo,
       methods: 'get'
     })
     .then(res => {
@@ -98,18 +98,27 @@ export default {
         this.category = data.category
         this.bannerPic = data.slides
         this.adBanner = data.advertesPicture.PICTURE_ADDRESS
-        this.recommendGoods = response.data.data.recommend;
-        this.floor1 = response.data.data.floor1;
-        this.floor2 = response.data.data.floor2;
-        this.floor3 = response.data.data.floor3;
-        this.floorName = response.data.data.floorName;
-        this.hotGoods = response.data.data.hotGoods;
-        
+        this.recommendGoods = data.recommend;
+        this.floor1 = data.floor1;
+        this.floor2 = data.floor2;
+        this.floor3 = data.floor3;
+        this.floorName = data.floorName;
+        this.hotGoods = data.hotGoods;
       }
     })
     .catch(err => {
       console.log(err)
     })
+  },
+  filters: {
+    moneyFilter(money) {
+      return toMoney(money);
+    }
+  },
+  components: {
+    floorComponent,
+    HotSale,
+    RecommendGoods
   }
 };
 </script>
@@ -189,7 +198,7 @@ export default {
     padding-bottom: 8.88%;
   }
 
-  .recommend-area{}
+  
  
 </style>
 

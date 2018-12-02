@@ -17,7 +17,7 @@ textarea{overflow:auto;resize:vertical}
 input,textarea,button,select,a{outline:0 none;border: none;border-radius: 0;}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 mark{background-color:transparent}
-a,ins,s,u,del{text-decoration:none}
+a,ins,s,u{text-decoration:none}
 sup,sub{vertical-align:baseline}
 html {overflow-x: hidden;height: 100%;font-size: 50px;-webkit-tap-highlight-color: transparent;}
 body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;color: #333;font-size: .38em;line-height: 1;-webkit-text-size-adjust: none;min-width: 320px;max-width: 640px;margin: 0 auto;}
