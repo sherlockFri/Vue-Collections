@@ -10,7 +10,10 @@ exports.initSchemas = () => {
 }
 
 exports.connect = () => {
-  mongoose.connect(DB_URL, { useCreateIndex: true })
+  mongoose.connect(DB_URL, { 
+    useCreateIndex: true,
+    useNewUrlParser: true 
+  })
   let maxConnectTime = 0
 
   return new Promise( (resolve, reject) => {
@@ -19,7 +22,10 @@ exports.connect = () => {
       if (maxConnectTime < 3) {
         maxConnectTime++
         console.log(`***数据库正在进行第${maxConnectTime}次重连***`)
-        mongoose.connect(DB_URL, { useCreateIndex: true })
+        mongoose.connect(DB_URL, { 
+          useCreateIndex: true,
+          useNewUrlParser: true 
+        })
       } else {
         reject()
         throw new Error('***数据库出现问题，程序无法搞定，请人为修理***')
@@ -32,7 +38,10 @@ exports.connect = () => {
       if (maxConnectTime < 3) {
         maxConnectTime++
         console.log(`***数据库正在进行第${maxConnectTime}次重连***`)
-        mongoose.connect(DB_URL, { useCreateIndex: true })
+        mongoose.connect(DB_URL, { 
+          useCreateIndex: true,
+          useNewUrlParser: true
+        })
       } else {
         reject( err )
         throw new Error('***数据库出现问题，程序无法搞定，请人为修理***')

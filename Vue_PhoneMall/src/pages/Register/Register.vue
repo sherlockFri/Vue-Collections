@@ -46,6 +46,7 @@ export default {
       this.$router.go(-1);
     },
     registerAction() {
+      //左边错误不执行右边的
       this.checkForm() && this.axiosRegisterUser();
     },
 
