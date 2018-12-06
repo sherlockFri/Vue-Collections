@@ -13,9 +13,12 @@
       />
 
       <van-field
+        ref="password"
         v-model="password"
-        type="password"
+        :type="type"
         label="密码"
+        :icon="icon"
+        @click-icon="showOrHidePsw"
         placeholder="请输入密码"
         required
         :error-message="passwordErrorMsg"
@@ -34,6 +37,8 @@ import { Toast } from "vant";
 export default {
   data() {
     return {
+      type: 'password',
+      icon: 'password-not-view',
       username: "",
       password: "",
       openLoading: false, //是否开启用户注册的Loading状态
@@ -41,6 +46,23 @@ export default {
       passwordErrorMsg: "" //当密码出现错误时的提示信息
     };
   },
+  watch: {
+    username() {
+      if (this.username.length < 5) {
+        this.usernameErrorMsg = "用户名不能少于5位"
+      } else {
+        this.usernameErrorMsg = "";
+      }
+    },
+    password() {
+      if (this.password.length < 6) {
+        this.passwordErrorMsg = "密码不能少于6位"
+      } else {
+        this.passwordErrorMsg = "";
+      }
+    }
+  },
+ 
   methods: {
     goBack() {
       this.$router.go(-1);
@@ -66,9 +88,8 @@ export default {
             Toast.success(response.data.message);
             this.$router.push("/");
           } else {
-            console.log(response.data.message);
             this.openLoading = false;
-            Toast.fail("注册失败");
+            Toast.fail(response.data.message);
           }
         })
         .catch(error => {
@@ -80,20 +101,29 @@ export default {
     //****表单验证方法
     checkForm() {
       let isOk = true;
-      if (this.username.length < 5) {
-        this.usernameErrorMsg = "用户名不能少于5位";
+      if ( !this.username.length) {
+        this.usernameErrorMsg = "用户名不能为空"
         isOk = false;
       } else {
         this.usernameErrorMsg = "";
       }
-      if (this.password.length < 6) {
-        this.passwordErrorMsg = "密码不能少于6位";
+      if ( !this.password.length ) {
+        this.passwordErrorMsg = "密码不能为空"
         isOk = false;
       } else {
         this.passwordErrorMsg = "";
       }
 
       return isOk;
+    },
+    showOrHidePsw() {
+      if (this.type === 'password') {
+        this.type = 'text'
+        this.icon = 'password-view'
+      } else {
+        this.type = 'password'
+        this.icon = 'password-not-view'
+      }
     }
   }
 };

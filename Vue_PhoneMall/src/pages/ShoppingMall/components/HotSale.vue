@@ -6,6 +6,7 @@
           v-for="(item,index) in hotGoods"
           :key="item.goodsId"
           :class="{'border-rightbottom': index % 2 === 0, 'border-bottom': index % 2 === 1}"
+          @click="detailPage(item.goodsId)"
       >
         <img v-lazy="item.image" alt="">
         <p class="goods-name">{{item.name}}</p>
@@ -33,6 +34,12 @@ export default {
       return toMoney(money);
     }
   },
+  methods: {
+    detailPage(ID) {
+      this.$router.push({path: '/goods', query: {goodsId: ID}})
+      // this.$router.push({name: 'Goods', params: {goodsId: ID}})
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
