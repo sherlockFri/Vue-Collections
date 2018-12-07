@@ -36,8 +36,8 @@ export default {
   },
   methods: {
     detailPage(ID) {
-      this.$router.push({path: '/goods', query: {goodsId: ID}})
-      // this.$router.push({name: 'Goods', params: {goodsId: ID}})
+      // this.$router.push({path: '/goods', query: {goodsId: ID}})
+      this.$router.push({name: 'Goods', params: {goodsId: ID}})
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="search-bar flex ">
       <div class="icon">
         <img :src="locationIcon" alt="">
@@ -129,6 +129,9 @@ export default {
   }
 </style>
 <style lang="scss" scoped>
+  .wrapper{
+    padding-bottom: 50px;
+  }
   .search-bar{
      background-color: #e5017d;
      padding: .2rem 0;

@@ -3,10 +3,11 @@ import Router from 'vue-router'
 import ShoppingMall from '@/pages/ShoppingMall/ShoppingMall'
 import Register from '@/pages/Register/Register'
 import Login from '@/pages/Login/Login'
-// import Member from '@/pages/Member/Member'
+import Member from '@/pages/Member/Member'
 import Goods from '@/pages/Goods/Goods'
 import CategoryList from '@/pages/CategoryList/CategoryList'
 import Cart from '@/pages/Cart/Cart'
+import Main from '@/pages/Main/'
 
 Vue.use(Router)
 
@@ -14,33 +15,55 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'ShoppingMall',
-      component: ShoppingMall
+      name: 'Main',
+      component: Main,
+      children: [
+        {
+          path: '/ShoppingMall',
+          name: 'ShoppingMall',
+          component: () => import('@/pages/ShoppingMall/ShoppingMall')
+        },
+        {
+          path: '/member',
+          name: 'Member',
+          component: () => import('@/pages/Member/Member')
+        },
+        {
+          path: '/categoryList',
+          name: 'CategoryList',
+          component: () => import('@/pages/CategoryList/CategoryList')
+        },
+        {
+          path: '/cart',
+          name: 'Cart',
+          component: () => import('@/pages/Cart/Cart')
+        }
+      ]
     },
+
     {
       path: '/register',
       name: 'Register',
-      component: Register
+      component: () => import('@/pages/Register/Register')
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: () => import('@/pages/Login/Login')
     },
     {
       path: '/goods/:goodsId',
       name: 'Goods',
-      component: Goods
+      component: () => import('@/pages/Goods/Goods')
     },
-    {
-      path: '/categoryList',
-      name: 'CategoryList',
-      component: CategoryList
-    },
-    {
-      path: '/cart',
-      name: 'Cart',
-      component: Cart
+
+  
+   
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition && to.meta.keepAlive) {
+     return savedPosition;
     }
-  ]
+    return { x: 0, y:0 };
+   },
 })

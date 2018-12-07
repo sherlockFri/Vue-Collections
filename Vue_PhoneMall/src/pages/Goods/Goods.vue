@@ -76,8 +76,8 @@ export default {
         ? JSON.parse(localStorage.cartInfo)
         : [];
       let isHaveGoods = cartInfo.find(cart => cart.goodsId == this.goodsId);
-      console.log(isHaveGoods);
-      console.log(this.goodsInfo);
+      // console.log(isHaveGoods);
+      // console.log(this.goodsInfo);
       if (!isHaveGoods) {
         let newGoodsInfo = {
           goodsId: this.goodsInfo.ID,
