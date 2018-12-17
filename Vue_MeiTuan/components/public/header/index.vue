@@ -1,25 +1,25 @@
 <template>
   <div class="m-header">
-    <!-- <el-row>
+    <el-row>
       <el-col>
-        <top-bar />
+        <top-bar/>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <search-bar/>
       </el-col>
-    </el-row> -->
+    </el-row>
   </div>
 </template>
 
 <script>
-import topBar from "./topbar.vue"
-import searchBar from './searchbar.vue'
+import TopBar from './topbar.vue'
+import SearchBar from './searchbar.vue'
 export default {
   components:{
-    topBar,
-    searchBar
+    TopBar,
+    SearchBar
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="layout-default">
     <el-header>
       <my-header />
     </el-header>
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-  import MyFooter from '@/components/public/footer/footer.vue'
-  import MyHeader from '@/components/public/header/header.vue'
+  import MyFooter from '@/components/public/footer/index.vue'
+  import MyHeader from '@/components/public/header/index.vue'
   export default {
     components:{
       MyHeader,
