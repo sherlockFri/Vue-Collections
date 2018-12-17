@@ -63,13 +63,12 @@ export default {
     }
   },
   methods: {
-    mouseleave:function(){
-      let self=this;
-      self._timer=setTimeout(function(){
+    mouseleave() {
+      this._timer=setTimeout(function(){
         self.kind=''
       },150)
     },
-    enter:function(e){
+    enter(e){
       this.kind=e.target.querySelector('i').className
     },
     sover() {
