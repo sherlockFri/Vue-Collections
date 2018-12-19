@@ -3,6 +3,21 @@ import Koa from "koa"
 import consola from "consola"
 import { Nuxt, Builder } from 'nuxt'
 
+import mongoose from 'mongoose'
+import bodyParser from 'koa-bodyparser'
+import session from 'koa-generic-session'
+import Redis from 'koa-redis'
+import json from 'koa-json'
+import dbConfig from './dbs/config'
+import passport from './interface/utils/passport'
+
+// 1.1引入各路由接口
+import users from './interface/users'
+import geo from './interface/geo'
+import search from './interface/search'
+import categroy from './interface/categroy'
+import cart from './interface/cart'
+
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
@@ -14,16 +29,21 @@ config.dev = !(app.env === 'production')
 async function start() {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
-
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)
     await builder.build()
   }
 
+  // 1.2使用路由接口
+  app.use(users.routes()).use(users.allowedMethods())
+  app.use(geo.routes()).use(geo.allowedMethods())
+  app.use(search.routes()).use(search.allowedMethods())
+  app.use(categroy.routes()).use(categroy.allowedMethods())
+  app.use(cart.routes()).use(cart.allowedMethods())
+
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
-
     return new Promise((resolve, reject) => {
       ctx.res.on('close', resolve)
       ctx.res.on('finish', resolve)
