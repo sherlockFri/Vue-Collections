@@ -23,7 +23,10 @@ router.post('/verify', async (ctx, next) => {
   }
   // 创建发邮件的 传输者
   let transporter = nodeMailer.createTransport({
-    service: 'qq',
+    // service: 'qq',
+    host: Email.smtp.host,
+    port: 587,
+    secure: false,
     auth: {
       user: Email.smtp.user,
       pass: Email.smtp.pass

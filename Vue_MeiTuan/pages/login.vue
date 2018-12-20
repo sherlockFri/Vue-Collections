@@ -63,6 +63,7 @@ export default {
             location.href='/'
           }else{
             self.error=data.msg
+            console.log(data.msg)
           }
         }else{
           self.error=`服务器出错`

@@ -32,6 +32,7 @@
           prop="email">
           <el-input v-model="ruleForm.email" />
           <el-button
+            :disabled="disabled"
             size="mini"
             round
             @click="sendMsg">发送验证码</el-button>
@@ -82,6 +83,7 @@ import CryptoJS from 'crypto-js'
       return {
         statusMsg: '',
         error: '',
+        disabled: false,
         ruleForm: {
           name: '',
           code: '',
@@ -133,9 +135,11 @@ import CryptoJS from 'crypto-js'
         let namePass
         let emailPass
         if (self.timerid) {
+          self.disabled = true
           return false
         }
         this.$refs['ruleForm'].validateField('name', (valid) => {
+          // valid 有值代表错误
           namePass = valid
         })
         self.statusMsg = ''
@@ -146,6 +150,7 @@ import CryptoJS from 'crypto-js'
           emailPass = valid
         })
         if (!namePass && !emailPass) {
+          console.log(encodeURIComponent(self.ruleForm.name));
           self.$axios.post('/users/verify', {
             username: encodeURIComponent(self.ruleForm.name),
             email: self.ruleForm.email
@@ -171,6 +176,7 @@ import CryptoJS from 'crypto-js'
       register: function () {
         let self = this;
         this.$refs['ruleForm'].validate((valid) => {
+          // valid 有值 代表所有验证都通过了
           if (valid) {
             self.$axios.post('/users/signup', {
               username: window.encodeURIComponent(self.ruleForm.name),
