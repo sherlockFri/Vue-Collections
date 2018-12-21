@@ -49,11 +49,107 @@ export default {
     return {
       kind: 'all',
       list: {
-        all: [],
-        part: [],
-        spa: [],
-        movie: [],
-        travel: []
+        all: [
+          {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+           {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+           {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+           {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+           {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+           {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+        ],
+        part: [
+          {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+        ],
+        spa: [
+          {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+             {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+        ],
+        movie: [
+             {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },   {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },   {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+        ],
+        travel: [
+             {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },   {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },   {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },   {
+            img: 'https://p0.meituan.net/msmerchant/b8117f180700802d5f16c66f6b5a73d5416203.jpg@368w_208h_1e_1c',
+            title: '小红袍香港私房火锅料理（王府中环店',
+            pos: 'pos',
+            price: '123'
+          },
+        ]
       }
     }
   },

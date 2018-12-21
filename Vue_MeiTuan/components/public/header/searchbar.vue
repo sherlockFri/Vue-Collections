@@ -40,7 +40,10 @@
           </dl>
         </div>
         <p class="suggest">
-          <a>123</a>
+          <a
+            v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
+            :key="idx"
+            :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
         </p>
         <ul class="nav">
           <li><nuxt-link
@@ -93,19 +96,33 @@ export default {
     }
   },
   methods: {
-    focus:function(){
+    focus() {
       this.isFocus=true
     },
-    blur:function(){
+    blur(){
       let self=this;
       // 防止点击搜索结果时,输入框过早进入blur状态
       //使得搜索结果没有点到
-      setTimeout(function(){
-        self.isFocus=false
+      setTimeout(() => {
+        this.isFocus=false
       },200)
     },
-    input:function(){}
-  }
+
+    input:_.debounce(async function(){
+      let self=this;
+      // let city=self.$store.state.geo.position.city.replace('市','')
+      self.searchList=[]
+      let {status,data:{top}}=await self.$axios.get('/search/top',{
+        //查询的时候要用 params
+        params:{
+          input:self.search,
+          city: '三亚'
+        }
+      })
+      self.searchList=top.slice(0,10)
+    },300)
+  },
+
 }
 </script>
 <style lang="scss" scoped>
