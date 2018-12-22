@@ -40,7 +40,9 @@ export default {
       let c
       let d={}
       city.forEach(item=>{
+        // 获取城市全拼 转换小写 取首字母
         p=pyjs.getFullChars(item.name).toLocaleLowerCase().slice(0,1)
+        // 字母转换 unicode 编码
         c=p.charCodeAt(0)
         if(c>96&&c<123){
           if(!d[p]){
@@ -49,12 +51,15 @@ export default {
           d[p].push(item.name)
         }
       })
+      // entries 把 {a: {b,c}} => ['a', {b,c}]
       for(let [k,v] of Object.entries(d)){
         blocks.push({
           title:k.toUpperCase(),
           city:v
         })
       }
+
+      // 根据 unicode 大小排序
       blocks.sort((a,b)=>a.title.charCodeAt(0)-b.title.charCodeAt(0))
       self.block=blocks
     }
