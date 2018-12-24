@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import axios from './utils/axios'
-import Poi from '../dbs/models/poi'
+// import Poi from '../dbs/models/poi'
 // import sign from './utils/sign'
 
 let router = new Router({prefix: '/search'})

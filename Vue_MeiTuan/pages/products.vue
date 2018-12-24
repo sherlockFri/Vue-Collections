@@ -40,47 +40,47 @@ export default {
     }
   },
   // asyncDta 只能在页面组件引用
-  async asyncData(ctx){
-    let keyword = ctx.query.keyword
-    let city = ctx.store.state.geo.position.city
-    let {status,data:{count,pois}} = await ctx.$axios.get('/search/resultsByKeywords',{
-      params:{
-        keyword,
-        city
-      }
-    })
-    let {status:status2,data:{areas,types}} = await ctx.$axios.get('/categroy/crumbs',{
-      params:{
-        city
-      }
-    })
-    if(status===200&&count>0&&status2===200){
-      //由于asyncData方法是在组件 初始化 前被调用的，
-      //所以在方法内是没有办法通过 this 来引用组件的实例对象
-      // 所以data 的数据 用return 赋值回去
-      return {
-        list: pois.filter(item=>item.photos.length).map(item=>{
-          return {
-            type: item.type,
-            img: item.photos[0].url,
-            name: item.name,
-            comment: Math.floor(Math.random()*10000),
-            rate: Number(item.biz_ext.rating),
-            price: Number(item.biz_ext.cost),
-            scene: item.tag,
-            tel: item.tel,
-            status: '可订明日',
-            location: item.location,
-            module: item.type.split(';')[0]
-          }
-        }),
-        keyword,
-        areas: areas.filter(item=>item.type!=='').slice(0,5),
-        types: types.filter(item=>item.type!=='').slice(0,5),
-        point: (pois.find(item=>item.location).location||'').split(',')
-      }
-    }
-  }
+  // async asyncData(ctx){
+  //   let keyword = ctx.query.keyword
+  //   let city = ctx.store.state.geo.position.city
+  //   let {status,data:{count,pois}} = await ctx.$axios.get('/search/resultsByKeywords',{
+  //     params:{
+  //       keyword,
+  //       city
+  //     }
+  //   })
+  //   let {status:status2,data:{areas,types}} = await ctx.$axios.get('/categroy/crumbs',{
+  //     params:{
+  //       city
+  //     }
+  //   })
+  //   if(status===200&&count>0&&status2===200){
+  //     //由于asyncData方法是在组件 初始化 前被调用的，
+  //     //所以在方法内是没有办法通过 this 来引用组件的实例对象
+  //     // 所以data 的数据 用return 赋值回去
+  //     return {
+  //       list: pois.filter(item=>item.photos.length).map(item=>{
+  //         return {
+  //           type: item.type,
+  //           img: item.photos[0].url,
+  //           name: item.name,
+  //           comment: Math.floor(Math.random()*10000),
+  //           rate: Number(item.biz_ext.rating),
+  //           price: Number(item.biz_ext.cost),
+  //           scene: item.tag,
+  //           tel: item.tel,
+  //           status: '可订明日',
+  //           location: item.location,
+  //           module: item.type.split(';')[0]
+  //         }
+  //       }),
+  //       keyword,
+  //       areas: areas.filter(item=>item.type!=='').slice(0,5),
+  //       types: types.filter(item=>item.type!=='').slice(0,5),
+  //       point: (pois.find(item=>item.location).location||'').split(',')
+  //     }
+  //   }
+  // }
 }
 </script>
 

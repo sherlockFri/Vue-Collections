@@ -1,5 +1,7 @@
 export default {
   dbs:'mongodb://127.0.0.1:27017/student',
+
+  //redis 配置
   redis:{
     get host(){
       return '127.0.0.1' // * 根据设置的地方不同填写不同的IP

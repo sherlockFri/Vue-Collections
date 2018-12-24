@@ -12,6 +12,7 @@ let Store = new Redis().client // 实例化 redis
 // 邮箱验证码的路由
 router.post('/verify', async (ctx, next) => {
   let username = ctx.request.body.username
+  // redis 获取存储的 用户信息
   const saveExpire = await Store.hget(`nodemail:${username}`, 'expire')
   // 频繁点击发送验证码,会触发此逻辑
   if (saveExpire && new Date().getTime() - saveExpire < 0) {
@@ -98,11 +99,13 @@ router.post('/signup', async (ctx) => {
   if (nuser) {
     let res = await axios.post('/users/signin', {username, password})
     if (res.data && res.data.code === 0) {
+     
       ctx.body = {
         code: 0,
         msg: '注册成功',
         user: res.data.user
       }
+      // ctx.redirect('/')
     } else {
       ctx.body = {
         code: -1,

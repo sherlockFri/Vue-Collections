@@ -150,7 +150,6 @@ import CryptoJS from 'crypto-js'
           emailPass = valid
         })
         if (!namePass && !emailPass) {
-          console.log(encodeURIComponent(self.ruleForm.name));
           self.$axios.post('/users/verify', {
             username: encodeURIComponent(self.ruleForm.name),
             email: self.ruleForm.email
